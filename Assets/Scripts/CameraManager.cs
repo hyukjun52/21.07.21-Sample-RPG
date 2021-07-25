@@ -70,7 +70,7 @@ public class CameraManager : MonoBehaviour
         {
             transform.position = new Vector3(position.x, position.y - m_Height, 0);
             m_Rect.Bottom -= m_Height;
-            m_Rect.Bottom -= m_Height;
+            m_Rect.Top -= m_Height;
         }
     }
 }

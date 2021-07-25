@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
 
     public bool IsLeft { get; private set; } = false;       //  캐릭터 방향이 왼쪽인가?
     public bool IsMoveLock { get; private set; } = false;   //  캐릭터가 움직일 수 있는가?
+    public int SaveLevel { get; set; } = 0;                 //  캐릭터 세이브 레벨
 
     private void Awake()
     {
@@ -27,6 +28,16 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            //  Path -> IO stream 도와주는 유틸 클래스
+            //  Path.GetFileName -> 파일 이름 + 확장자를 가져온다
+            //  ex) Assets/Data/Material.mat -> return : Material.mat
+            FileManager.Get.Load(
+                System.IO.Path.GetFileName(FileManager.Get.GetSaveFilePath),
+                this);
+        }
+
         if (m_PawnAnimation.Jump) return;
         if (Input.GetKey(KeyCode.Space))
         {
